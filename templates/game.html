@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+<link rel="stylesheet" href="{{ static_url('css/game.css') }}" type="text/css">
+<title>Game</title>
+{% end %}
+
+{% block body %}
+<div class="game-container">
+
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+    
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.arc(20, 160, 10, 0, Math.PI*2, false);
+    ctx.fillStyle = "green";
+    ctx.fill();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.rect(470, 170, 10, 150);
+    ctx.fillStyle = "#FF0000";
+    ctx.fill();
+    ctx.closePath();
+
+    </script>
+
+</div>
+{% end %}
