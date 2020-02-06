@@ -5,7 +5,7 @@ import os.path
 class App(web.Application):
     def __init__(self):
         handlers = [
-            (r"/", Main_Handler)
+            (r"/home", Main_Handler)
         ]
 
         settings = dict(
@@ -17,7 +17,7 @@ class App(web.Application):
 
 class Main_Handler(web.RequestHandler):
     def get(self):
-        self.render('index.html')
+        self.render('homepage.html')
 
 def main():
     app = App()
