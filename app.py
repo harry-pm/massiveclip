@@ -5,6 +5,7 @@ import os.path
 class App(web.Application):
     def __init__(self):
         handlers = [
+            (r"/", Main_Handler),
             (r"/home", Main_Handler),
             (r"/game", Game_Handler)
         ]
