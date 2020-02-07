@@ -1,6 +1,7 @@
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
 
+
 var grid = 16;
 var count = 0;
 var score = 0;
@@ -153,6 +154,10 @@ document.addEventListener('keydown', function(e) {
   }
 
   else if (gameOver === true && e.which === 32) {
+      let xhr = new XMLHttpRequest()
+      let username = "harry_for_now"
+      xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_highscore=" + score , true);
+      xhr.send();
       gameOver = false;
       score = 0
   }

@@ -29,7 +29,9 @@ class Snake_Scores_Request_Handler(SessionMixin, web.RequestHandler):
 class Save_Snake_Score_Request_Handler(SessionMixin, web.RequestHandler):
     def get(self):
         with self.make_session() as session:
-            session.add(User_And_Score(username = "HPM", snake_highscore = 42))
+            username = self.get_argument("username")
+            snake_highscore = self.get_argument("snake_highscore")
+            session.add(User_And_Score(username = username, snake_highscore = snake_highscore))
             # TODO: add condition to only save score if it is higher than current highest by that user (upsert rather than insert - fix this in a bit!)
             session.commit()
 
