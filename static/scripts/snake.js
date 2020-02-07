@@ -153,8 +153,13 @@ document.addEventListener('keydown', function(e) {
   }
 
   else if (gameOver === true && e.which === 32) {
-      gameOver = false;
-      score = 0
+    let xhr = new XMLHttpRequest()
+    let username = this.getElementById('username').innerHTML;
+    console.log(username);
+    xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_highscore=" + score , true);
+    xhr.send();
+    gameOver = false;
+    score = 0
   }
 });
 
