@@ -34,5 +34,6 @@ footer {
 }
 
 img {
+    border: solid black 1px;
     width: 200px;
 }
