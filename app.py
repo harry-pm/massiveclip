@@ -18,10 +18,11 @@ class User_And_Score(db.Model):
 
 
 
-class DatabaseRequestHandler(SessionMixin, web.RequestHandler):
+class Snake_Scores_Request_Handler(SessionMixin, web.RequestHandler):
     def get(self):
         with self.make_session() as session:
-            all_info = session.query(User_And_Score).first()
+            username = self.get_argument("username")
+            all_info = session.query(User_And_Score).filter_by(username = username).first()
             string = "Current user: " + all_info.username + ". Current score: " + str(all_info.snake_highscore)
             self.write(string)
 
@@ -34,7 +35,7 @@ class App(web.Application):
             (r"/", Main_Handler),
             (r"/home", Main_Handler),
             (r"/game", Game_Handler),
-            (r"/database", DatabaseRequestHandler)
+            (r"/snake_scores", Snake_Scores_Request_Handler)
         ]
 
         settings = dict(
