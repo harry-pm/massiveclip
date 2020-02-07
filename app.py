@@ -7,7 +7,8 @@ class App(web.Application):
         handlers = [
             (r"/", Main_Handler),
             (r"/home", Main_Handler),
-            (r"/game", Game_Handler)
+            (r"/game", Game_Handler),
+            (r"/snake", Snake_Handler)
         ]
 
         settings = dict(
@@ -24,6 +25,10 @@ class Main_Handler(web.RequestHandler):
 class Game_Handler(web.RequestHandler):
     def get(self):
         self.render('game.html', script_location = '../static/scripts/game.js')
+
+class Snake_Handler(web.RequestHandler):
+    def get(self):
+        self.render('snake.html', script_location = '../static/scripts/snake.js')
         
 def main():
     app = App()

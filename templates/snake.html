@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+<link rel="stylesheet" href="{{ static_url('css/snake.css') }}" type="text/css">
+<title>W3sch</title>
+{% end %}
+
+{% block body %}
+
+<canvas width="400" height="400" id="game"></canvas>
+<script src="../static/scripts/snake.js"></script>
+
+{% end %}
