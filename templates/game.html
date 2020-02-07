@@ -6,11 +6,18 @@
 {% end %}
 
 {% block body %}
-<div class="game-container">
+<header>
+    <a href="/home" class="home-link"><h2>Game</h2></a>
+    <h4>{{ name }}</h4>
+</header>
 
-    <canvas id="myCanvas" width="480" height="320"></canvas>
-
-    <script type="text/javascript" src="../static/scripts/game.js"></script>
-
-</div>
+<main>
+    <div class="game-container">
+        
+        <canvas id="myCanvas" width="480" height="320"></canvas>
+        
+        <script type="text/javascript" src="../static/scripts/game.js"></script>
+        
+    </div>
+</main>
 {% end %}
