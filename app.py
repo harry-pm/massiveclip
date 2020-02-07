@@ -7,7 +7,7 @@ class App(web.Application):
         handlers = [
             (r"/", Main_Handler),
             (r"/home", Main_Handler),
-            (r"/firefly", Firefly_Handler)
+            (r"/game", Game_Handler)
         ]
 
         settings = dict(
@@ -21,9 +21,9 @@ class Main_Handler(web.RequestHandler):
     def get(self):
         self.render('homepage.html')
 
-class Firefly_Handler(web.RequestHandler):
+class Game_Handler(web.RequestHandler):
     def get(self):
-        self.render('firefly.html', script_location = '../static/scripts/firefly.js')
+        self.render('game.html', script_location = '../static/scripts/game.js')
         
 def main():
     app = App()
