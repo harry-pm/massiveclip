@@ -2,6 +2,7 @@ import logging
 from tornado import escape, ioloop, web, websocket
 import os.path
 from tornado_sqlalchemy import SQLAlchemy, SessionMixin
+import requests
 
 ######################################################### Models, SQLAlchemy stuff
 from sqlalchemy import Column, BigInteger, String, Integer # for use in defining our models
@@ -23,8 +24,7 @@ class Snake_Scores_Request_Handler(SessionMixin, web.RequestHandler):
         with self.make_session() as session:
             username = self.get_argument("username")
             all_info = session.query(User_And_Score).filter_by(username = username).first()
-            string = "Current user: " + all_info.username + ". Current score: " + str(all_info.snake_highscore)
-            self.write(string)
+            self.write(str(all_info.snake_highscore))
 
 class Save_Snake_Score_Request_Handler(SessionMixin, web.RequestHandler):
     def get(self):
@@ -62,9 +62,16 @@ class Game_Handler(web.RequestHandler):
     def get(self):
         self.render('game.html', script_location = '../static/scripts/game.js')
 
-class Snake_Handler(web.RequestHandler):
+
+# TODO: fix to use api instead
+class Snake_Handler(SessionMixin, web.RequestHandler):
     def get(self):
-        self.render('snake.html', script_location = '../static/scripts/snake.js')
+        # high_score_hpm = requests.get("http://localhost:8000/api/snake_scores?username=HPM")
+        # print(high_score_hpm)
+        # print(type(high_score_hpm))
+        with self.make_session() as session:
+            high_score_hpm = session.query(User_And_Score).filter_by(username = "HPM").first().snake_highscore
+        self.render('snake.html', script_location = '../static/scripts/snake.js', score = high_score_hpm)
         
 def main():
     app = App(db=db)
