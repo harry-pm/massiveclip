@@ -5,10 +5,17 @@
 {% end %}
 
 {% block body %}
-<div class="game-containers">
-    <a href="/snake">
-        <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
-        <h4 class="game-name">Snake</h4>
-    </a>
-</div>
+<header>
+    <a href="/home" class="home-link"><h2>Game app</h2></a>
+    <h4>{{ name }}</h4>
+</header>
+
+<main>
+    <div class="game-containers">
+        <a href="/snake">
+            <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
+            <h4 class="game-name">Snake</h4>
+        </a>
+    </div>
+</main>
 {% end %}
