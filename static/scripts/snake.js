@@ -157,7 +157,7 @@ document.addEventListener('keydown', function(e) {
     let xhr = new XMLHttpRequest()
     let username = this.getElementById('username').innerHTML;
     console.log(username);
-    xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_highscore=" + score , true);
+    xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
     xhr.send();
     gameOver = false;
     score = 0

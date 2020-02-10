@@ -3,13 +3,11 @@ from sqlalchemy import Column, BigInteger, String, Integer # for use in defining
 
 db = SQLAlchemy(url='sqlite:///test.db')
 
-class User_And_Score(db.Model):
-    __tablename__ = "user_and_score"
+class Snake_Highscore(db.Model):
+    __tablename__ = "snake_highscores"
     id = Column(Integer, primary_key = True, autoincrement = True)
     username = Column(String(100), nullable = False)
-    snake_highscore = Column(Integer) 
-    # N.B think this will need restructuring to a table for each game with those highscores
-    # rather than storing a score for each game in each player's table - because what if a new game is added? Whole db needs migrating. Keeping for now for speed.
+    highscore = Column(Integer)
 
 
 class User_Auth(db.Model):

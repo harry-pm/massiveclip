@@ -13,7 +13,6 @@ class App(web.Application):
             (r"/register", Registration_Handler),
             (r"/logout", Logout_Handler),
             (r"/game", Game_Handler),
-            (r"/api/snake_scores", Snake_Scores_Request_Handler),
             (r"/api/save_snake_score", Save_Snake_Score_Request_Handler),
             (r"/snake", Snake_Handler)
         ]
@@ -25,7 +24,6 @@ class App(web.Application):
             login_url = "/login",
         )
         super(App, self).__init__(handlers, **settings)
-
 
         
 def main():
