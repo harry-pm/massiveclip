@@ -10,13 +10,21 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.get_secure_cookie("user")
 
 
-class Login_Handler(BaseHandler):
+class Login_Handler(SessionMixin, web.RequestHandler):
     def get(self):
         self.render('login.html')
 
     def post(self):
-        self.set_secure_cookie("user", self.get_argument("username"))
-        self.redirect("/")
+        username = self.get_argument("username")
+        password = self.get_argument("password")
+
+        with self.make_session() as session:
+            user_info = session.query(User_Auth).filter_by(username = username).first()
+            if sha256.verify(password, user_info.password):
+                self.set_secure_cookie("user", self.get_argument("username"))
+                self.redirect("/")
+            else:
+                return "wrong password"
 
 
 class Registration_Handler(SessionMixin, web.RequestHandler):
