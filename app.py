@@ -11,6 +11,7 @@ class App(web.Application):
             (r"/home", Main_Handler),
             (r"/login", Login_Handler),
             (r"/register", Registration_Handler),
+            (r"/logout", Logout_Handler),
             (r"/game", Game_Handler),
             (r"/api/snake_scores", Snake_Scores_Request_Handler),
             (r"/api/save_snake_score", Save_Snake_Score_Request_Handler),

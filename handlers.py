@@ -12,7 +12,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class Login_Handler(SessionMixin, web.RequestHandler):
     def get(self):
-        self.render('login.html')
+        self.render("login.html", login_message = "", register_message = "")
 
     def post(self):
         username = self.get_argument("username")
@@ -24,7 +24,7 @@ class Login_Handler(SessionMixin, web.RequestHandler):
                 self.set_secure_cookie("user", self.get_argument("username"))
                 self.redirect("/")
             else:
-                return "wrong password"
+                self.render("login.html", login_message = "Wrong username or password", register_message = "")
 
 
 class Registration_Handler(SessionMixin, web.RequestHandler):
@@ -34,10 +34,19 @@ class Registration_Handler(SessionMixin, web.RequestHandler):
         hashed_password = sha256.hash(password)
 
         with self.make_session() as session:
+            user_info = session.query(User_Auth).filter_by(username = username).first()
+            if user_info:
+                self.render("login.html", login_message = "", register_message = "username already exists")
             session.add(User_Auth(username = username, password = hashed_password))
             session.commit()
 
         self.set_secure_cookie("user", self.get_argument("username"))
+        self.redirect("/")
+
+
+class Logout_Handler(BaseHandler):
+    def get(self):
+        self.clear_cookie("user")
         self.redirect("/")
 
 
