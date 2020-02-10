@@ -156,11 +156,16 @@ document.addEventListener('keydown', function(e) {
   else if (gameOver === true && e.which === 32) {
     let xhr = new XMLHttpRequest()
     let username = this.getElementById('username').innerHTML;
-    console.log(username);
+    // An imporvement on refreshing the page every time you restart the game might be live updating the scores:
+        // current_highscore = document.getElementById("score").innerHTML;
+        // if (score > current_highscore) {
+        //   document.getElementById("score").innerHTML = score;
+        // }
     xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
     xhr.send();
     gameOver = false;
-    score = 0
+    score = 0;
+    window.location.replace("/snake")
   }
 });
 
