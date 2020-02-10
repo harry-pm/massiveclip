@@ -1,5 +1,6 @@
 html {
-    background-color: orange;
+    height:100%;
+    background-image: linear-gradient(red, yellow);
 }
 
 header {
@@ -23,6 +24,21 @@ footer {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+h4 {
+    font-family: "Comic Sans MS";
+    margin: 15px 0px 0px 0px;
+    font-size: 25px;
+}
+
+.logout {
+    margin: 5px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .game-containers {

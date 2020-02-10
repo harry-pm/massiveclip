@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 
-{% block body %}
-<h2>Login</h2>
-<h3>{{ login_message }}</h3>
-<form action="/login" method="POST">
-    <input type="text" name="username">
-    <input type="text" name="password">
-    <input type="submit" name="login">
-</form>
+{% block title %}
+<link rel="stylesheet" href="{{ static_url('css/login.css') }}" type="text/css">
+<title>Homepage</title>
+{% end %}
 
-<h2>Register</h2>
-<h3>{{ register_message }}</h3>
-<form action="/register" method="POST">
-    <input type="text" name="username">
-    <input type="text" name="password">
-    <input type="submit" name="login">
-</form>
+{% block body %}
+<header>
+    <h4>Game</h4>
+</header>
+<main>
+    <div id="login-box">
+        <h2>Login</h2>
+        <h3 class="error">{{ login_message }}</h3>
+        <form action="/login" method="POST">
+            <input type="text" name="username">
+            <input type="text" name="password">
+            <input type="submit" name="login">
+        </form>
+
+        <h2>Register</h2>
+        <h3 class="error">{{ register_message }}</h3>
+        <form action="/register" method="POST">
+            <input type="text" name="username">
+            <input type="text" name="password">
+            <input type="submit" name="login">
+        </form>
+    </div>
+</main>
 {% end %}
