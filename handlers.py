@@ -73,15 +73,21 @@ class Snake_Handler(SessionMixin, BaseHandler):
     def get(self):
         name = tornado.escape.xhtml_escape(self.current_user)
         with self.make_session() as session:
-            user_highscore_query = session.query(Snake_Highscore).filter_by(username = name).order_by(Snake_Highscore.highscore.desc()).first()
 
+            user_highscore_query = session.query(Snake_Highscore).filter_by(username = name).order_by(Snake_Highscore.highscore.desc()).first()
             if user_highscore_query:
                 user_highscore = user_highscore_query.highscore
             else:
                 user_highscore = "You haven't got a high score for this game!"
-            #TODO add method for requesting all top 5 scores!
-        # self.render('snake.html', script_location = '../static/scripts/snake.js', name = name, user_highscore = user_highscore, top_5_scores = top_5_scores)
-        self.render('snake.html', script_location = '../static/scripts/snake.js', name = name, user_highscore = user_highscore)
+
+            all_scores = session.query(Snake_Highscore).order_by(Snake_Highscore.highscore.desc()).all()
+            if len(all_scores) < 5:
+                top_5_scores = all_scores
+            else:
+                top_5_scores = all_scores[:5]
+            top_5 = [(score.highscore, score.username) for score in top_5_scores]
+
+        self.render('snake.html', script_location = '../static/scripts/snake.js', name = name, user_highscore = user_highscore, top_5 = top_5)
 
 
 class Save_Snake_Score_Request_Handler(SessionMixin, web.RequestHandler):
