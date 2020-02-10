@@ -1,6 +1,7 @@
 import tornado
 from tornado import escape, ioloop, web, websocket
 from tornado_sqlalchemy import SQLAlchemy, SessionMixin
+from passlib.hash import pbkdf2_sha256 as sha256 #encodes passwords
 
 from models import db, User_And_Score, User_Auth
 
@@ -14,7 +15,21 @@ class Login_Handler(BaseHandler):
         self.render('login.html')
 
     def post(self):
-        self.set_secure_cookie("user", self.get_argument("name"))
+        self.set_secure_cookie("user", self.get_argument("username"))
+        self.redirect("/")
+
+
+class Registration_Handler(SessionMixin, web.RequestHandler):
+    def post(self):
+        username = self.get_argument("username")
+        password = self.get_argument("password")
+        hashed_password = sha256.hash(password)
+
+        with self.make_session() as session:
+            session.add(User_Auth(username = username, password = hashed_password))
+            session.commit()
+
+        self.set_secure_cookie("user", self.get_argument("username"))
         self.redirect("/")
 
 
