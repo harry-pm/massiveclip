@@ -165,7 +165,8 @@ document.addEventListener('keydown', function(e) {
     xhr.send();
     gameOver = false;
     score = 0;
-    window.location.replace("/snake")
+    // window.location.replace("/snake")
+    // only change made is to comment out auto-refresh to inspect the issue with get requests
   }
 });
 
