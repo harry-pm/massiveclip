@@ -4,6 +4,7 @@ import psycopg2
 import os
 
 db_url = os.environ['DATABASE_URL']
+# db_url = 'postgres://postgres:@localhost/games'
 db = SQLAlchemy(url=db_url)
 
 class Snake_Highscore(db.Model):
