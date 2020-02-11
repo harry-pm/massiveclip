@@ -161,7 +161,7 @@ document.addEventListener('keydown', function(e) {
         // if (score > current_highscore) {
         //   document.getElementById("score").innerHTML = score;
         // }
-    xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
+    xhr.open("GET", 'massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
     xhr.send();
     gameOver = false;
     score = 0;
