@@ -2,7 +2,8 @@ from tornado_sqlalchemy import SQLAlchemy, SessionMixin
 from sqlalchemy import Column, BigInteger, String, Integer # for use in defining our models
 import psycopg2
 
-db = SQLAlchemy(url='postgres://postgres:@localhost/games')
+db_url = os.environ['DATABASE_URL']
+db = SQLAlchemy(url=db_url)
 
 class Snake_Highscore(db.Model):
     __tablename__ = "snake_highscores"
