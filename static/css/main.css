@@ -1,13 +1,18 @@
 html {
     height:100%;
-    background-image: linear-gradient(red, yellow);
+    background-image: linear-gradient( #ff9933, #cc7733);
 }
 
 header {
-    background-color: white;
     display: flex;
-    border-bottom: solid black 1px;
+    border-bottom: solid #ff9933 1px;
     justify-content: space-between;
+}
+
+h1 {
+    color: #cc7733;
+    font-family: 'Bungee Shade', cursive;
+    font-size: 45px;
 }
 
 main {
@@ -16,8 +21,16 @@ main {
     height: 100%;
     display: flex;
     justify-content: center;
+}
+
+#scroll {
+    width: 60%;
+    display: flex;
+    justify-content: center;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 footer {
@@ -27,9 +40,10 @@ footer {
 }
 
 h4 {
-    font-family: "Comic Sans MS";
-    margin: 15px 0px 0px 0px;
-    font-size: 25px;
+    font-family: 'Bungee Shade', cursive;
+    margin: 30px 0px 30px 0px;
+    font-size: 35px;
+    color: #ffdd77;
 }
 
 .logout {
@@ -41,8 +55,21 @@ h4 {
     text-decoration: none;
 }
 
+button {
+    font-family: "Comic Sans MS";
+    font-size: 15px;
+    background-color: #cc7733;
+    border-radius: 6px;
+}
+
+button:hover {
+    background-color: #553311;
+    color: white;
+}
+
 .game-containers {
-    margin-top: -100px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .game-name {

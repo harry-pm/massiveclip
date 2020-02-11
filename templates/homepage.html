@@ -7,18 +7,38 @@
 {% block body %}
 <header>
     <a href="/home" class="home-link"><h2>Game app</h2></a>
-    <h4>{{ name }}</h4>
+    <h1 id="name">{{ name }}</h1>
     <a href="/logout" class="logout">
         <button >Logout</button>
     </a>
 </header>
 
 <main>
-    <div class="game-containers">
-        <a href="/snake">
-            <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
-            <h4 class="game-name">Snake</h4>
-        </a>
-    </div>
+    <div id="scroll">
+        <div class="game-containers">
+            <a href="/snake">
+                <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
+                <h4 class="game-name">Snake</h4>
+            </a>
+        </div>
+        <div class="game-containers">
+            <a href="/snake">
+                <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
+                <h4 class="game-name">Snake</h4>
+            </a>
+        </div>
+        <div class="game-containers">
+            <a href="/snake">
+                <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
+                <h4 class="game-name">Snake</h4>
+            </a>
+        </div>
+        <div class="game-containers">
+            <a href="/snake">
+                <img src="../static/images/Screenshot 2020-02-07 at 11.01.25.png" alt="game of snake">
+                <h4 class="game-name">Snake</h4>
+            </a>
+        </div>
+    </div>    
 </main>
 {% end %}
