@@ -120,7 +120,7 @@ class Chat_Socket_Handler(websocket.WebSocketHandler):
         # This means it gets sent all updates that are made to the cache!
 
     def on_close(self): # when a window is closed, makes sure it stops receiving messages from the socket. Reasonably self-explanatory.
-        ChatSocketHandler.waiters.remove(self)
+        Chat_Socket_Handler.waiters.remove(self)
 
     @classmethod
     def update_cache(cls, chat): # cls stands for class. This method does things to the class itself, and not to instances thereof!
@@ -135,15 +135,15 @@ class Chat_Socket_Handler(websocket.WebSocketHandler):
         logging.info("sending message to %d waiters", len(cls.waiters)) # More fancy logging, useful for debugging
         for waiter in cls.waiters: # where each waiter is an instance of the websockethandler class, that can send and receive info.
             try:
+                print("message received: " + chat)
                 waiter.write_message(chat) # sends the message (in this case chat) to each 'client' of this websocket.
             except:
                 logging.error("Error sending message", exc_info=True)
 
     def on_message(self, message):
         # Handles INCOMING messages on the websocket. Each time a message is received, it adds it to the cache, and then fires it off to each waiter in the waiter set.
-
         logging.info("got message %r", message) # Logs messages content
-        parsed_message = tornado.escape.json_decode(message) # escapes characters that could crash the socket: <, >, etc
-        chat_html = ("<p>%r</p>", parsed_message)
-        Chat_Socket_Handler.update_cache(chat_html)
-        Chat_Socket_Handler.send_updates(chat_html)
+        # chat_html = ("<p>" + message + "</p>")
+
+        Chat_Socket_Handler.update_cache(message)
+        Chat_Socket_Handler.send_updates(message)
