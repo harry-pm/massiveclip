@@ -25,7 +25,7 @@ class App(web.Application):
         )
         super(App, self).__init__(handlers, **settings)
 
-        
+
 def main():
     app = App(db=db)
     app.listen(8000)
