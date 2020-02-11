@@ -42,11 +42,30 @@ jQuery.fn.formToDict = function() {
 $(document).ready(() => {
 
     $("#send-message").on("click", function() {
-        message_to_send = $("input:text").val();
-        console.log(message_to_send);
-        sendMessage(message_to_send);
+        username = $("[id=username]").val();
+        console.log("username " + username);
+        message = $("input:text").val();
+        dateSent = Date.now()
+        messageToSend = `${username}: ${message} - Sent on ${dateSent} - STILL TO DO: IMPLEMENT NICE TIMESTAMPS AND THE USERNAME SENDING THE MESSAGE`
+        console.log(messageToSend);
+        sendMessage(messageToSend);
+        message = $("input:text").val("");
+
         return false;
     });
+
+    // $("#send-message").on("keypress", function(e) { // for sending messages with enter key
+    //     if (e.keyCode == 13) {
+    //         username = $("[id=username]").val();
+    //         console.log("username " + username);
+    //         message = $("input:text").val();
+    //         dateSent = Date.now()
+    //         messageToSend = `${username}: ${message} - Sent on ${dateSent} - STILL TO DO: IMPLEMENT NICE TIMESTAMPS AND THE USERNAME SENDING THE MESSAGE`
+    //         console.log(messageToSend);
+    //         sendMessage(messageToSend);
+    //         return false;
+    //     }
+    // });
     updater.start()
 })
 
