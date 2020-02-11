@@ -1,6 +1,7 @@
 from tornado_sqlalchemy import SQLAlchemy, SessionMixin
 from sqlalchemy import Column, BigInteger, String, Integer # for use in defining our models
 import psycopg2
+import os
 
 db_url = os.environ['DATABASE_URL']
 db = SQLAlchemy(url=db_url)
