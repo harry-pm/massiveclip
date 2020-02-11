@@ -161,12 +161,11 @@ document.addEventListener('keydown', function(e) {
         // if (score > current_highscore) {
         //   document.getElementById("score").innerHTML = score;
         // }
-    xhr.open("GET", 'massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
+    xhr.open("GET", 'http://massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
     xhr.send();
     gameOver = false;
     score = 0;
-    // window.location.replace("/snake")
-    // only change made is to comment out auto-refresh to inspect the issue with get requests
+    window.location.replace("/snake")
   }
 });
 
