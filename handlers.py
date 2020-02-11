@@ -78,7 +78,7 @@ class Snake_Handler(SessionMixin, BaseHandler):
             if user_highscore_query:
                 user_highscore = user_highscore_query.highscore
             else:
-                user_highscore = "You haven't got a high score for this game!"
+                user_highscore = "No highscore yet!"
 
             all_scores = session.query(Snake_Highscore).order_by(Snake_Highscore.highscore.desc()).all()
             if len(all_scores) < 5:
