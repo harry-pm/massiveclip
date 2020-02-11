@@ -101,9 +101,11 @@ class Save_Snake_Score_Request_Handler(SessionMixin, web.RequestHandler):
 
 ## Chat socket handlers
 
-class Chat_Handler(web.RequestHandler):
+class Chat_Handler(BaseHandler):
     def get(self):
-        self.render("chat.html", messages = Chat_Socket_Handler.cache) # Cache is defined in the chatsocket handler
+        name = tornado.escape.xhtml_escape(self.current_user)
+
+        self.render("chat.html", messages = Chat_Socket_Handler.cache, name = name) # Cache is defined in the chatsocket handler
 
 
 class Chat_Socket_Handler(websocket.WebSocketHandler):
@@ -136,6 +138,7 @@ class Chat_Socket_Handler(websocket.WebSocketHandler):
         for waiter in cls.waiters: # where each waiter is an instance of the websockethandler class, that can send and receive info.
             try:
                 print("message received: " + chat)
+                print("TODO: fix logging so that info messages are printing out")
                 waiter.write_message(chat) # sends the message (in this case chat) to each 'client' of this websocket.
             except:
                 logging.error("Error sending message", exc_info=True)

@@ -23,6 +23,11 @@ main {
     justify-content: center;
 }
 
+#chat-main {
+    display: flex;
+    flex-direction: column;
+}
+
 #scroll {
     width: 60%;
     display: flex;
