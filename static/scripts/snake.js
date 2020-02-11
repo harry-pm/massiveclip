@@ -166,6 +166,7 @@ document.addEventListener('keydown', function(e) {
     gameOver = false;
     score = 0;
     window.location.replace("/snake")
+    
   }
 });
 
