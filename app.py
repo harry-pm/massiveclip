@@ -1,4 +1,5 @@
 import logging
+import os
 from tornado import escape, ioloop, web, websocket
 import os.path
 import tornado
@@ -27,8 +28,9 @@ class App(web.Application):
 
 
 def main():
+    port = int(os.getenv("PORT", 8000))
     app = App(db=db)
-    app.listen(8000)
+    app.listen(port)
     print('hi')
     ioloop.IOLoop.current().start()
 
