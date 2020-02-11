@@ -1,5 +1,6 @@
 import tornado
 from tornado import escape, ioloop, web, websocket
+import logging # For nice printouts when info is passed between open websockets
 from tornado_sqlalchemy import SQLAlchemy, SessionMixin
 from passlib.hash import pbkdf2_sha256 as sha256 #encodes passwords
 
@@ -97,3 +98,52 @@ class Save_Snake_Score_Request_Handler(SessionMixin, web.RequestHandler):
             snake_score = int(self.get_argument("snake_score"))
             session.add(Snake_Highscore(username = username, highscore = snake_score))
             session.commit()
+
+## Chat socket handlers
+
+class Chat_Handler(web.RequestHandler):
+    def get(self):
+        self.render("chat.html", messages = Chat_Socket_Handler.cache) # Cache is defined in the chatsocket handler
+
+
+class Chat_Socket_Handler(websocket.WebSocketHandler):
+    waiters = set() # tracks all clients connected to the socket without duplicates.
+    cache = [] # stores messages for rendering if somebody joins the chat after they have been sent
+    cache_size = 100
+
+    def get_compression_options(self): 
+        # Leaving this blank disables compression options
+        return {}
+
+    def open(self):
+        Chat_Socket_Handler.waiters.add(self) # Whenever an instance of this socket is opened, adds it to the cache for the whole class.
+        # This means it gets sent all updates that are made to the cache!
+
+    def on_close(self): # when a window is closed, makes sure it stops receiving messages from the socket. Reasonably self-explanatory.
+        ChatSocketHandler.waiters.remove(self)
+
+    @classmethod
+    def update_cache(cls, chat): # cls stands for class. This method does things to the class itself, and not to instances thereof!
+        # See how cache, cache_size and waiters are CLASS attributes rather than instance attributes.
+        cls.cache.append(chat) # 
+        if len(cls.cache) > cls.cache_size:
+            cls.cache = cls.cache[-cls.cache_size :] 
+            # rolling log of up to n messages - chops the oldest message off if a new is added over the limit
+
+    @classmethod
+    def send_updates(cls, chat): # whatever the 'update' is, fires it off to each client.
+        logging.info("sending message to %d waiters", len(cls.waiters)) # More fancy logging, useful for debugging
+        for waiter in cls.waiters: # where each waiter is an instance of the websockethandler class, that can send and receive info.
+            try:
+                waiter.write_message(chat) # sends the message (in this case chat) to each 'client' of this websocket.
+            except:
+                logging.error("Error sending message", exc_info=True)
+
+    def on_message(self, message):
+        # Handles INCOMING messages on the websocket. Each time a message is received, it adds it to the cache, and then fires it off to each waiter in the waiter set.
+
+        logging.info("got message %r", message) # Logs messages content
+        parsed_message = tornado.escape.json_decode(message) # escapes characters that could crash the socket: <, >, etc
+        chat_html = ("<p>%r</p>", parsed_message)
+        Chat_Socket_Handler.update_cache(chat_html)
+        Chat_Socket_Handler.send_updates(chat_html)

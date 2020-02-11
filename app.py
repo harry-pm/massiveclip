@@ -15,7 +15,10 @@ class App(web.Application):
             (r"/logout", Logout_Handler),
             (r"/game", Game_Handler),
             (r"/api/save_snake_score", Save_Snake_Score_Request_Handler),
-            (r"/snake", Snake_Handler)
+            (r"/snake", Snake_Handler),
+            (r"/chat", Chat_Handler),
+            (r"/chatsocket", Chat_Socket_Handler),
+
         ]
         settings = dict(
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
