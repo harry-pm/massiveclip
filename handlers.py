@@ -24,10 +24,9 @@ class Login_Handler(SessionMixin, web.RequestHandler):
 
         with self.make_session() as session:
             user_info = session.query(User_Auth).filter_by(username = username).first()
-            if user_info:
-                if sha256.verify(password, user_info.password):
-                    self.set_secure_cookie("user", self.get_argument("username"))
-                    self.redirect("/")
+            if user_info and sha256.verify(password, user_info.password):
+                self.set_secure_cookie("user", self.get_argument("username"))
+                self.redirect("/")
             else:
                 self.render("login.html", login_message = "Wrong username or password", register_message = "")
 
