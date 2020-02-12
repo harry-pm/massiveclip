@@ -6,7 +6,7 @@ const updater = {
     },
 
     start: () => {
-        const url = "ws://" + location.host + "/chatsocket"; // This should plug right in to the heroku hosted version
+        const url = "wss://" + location.host + "/chatsocket"; // This should plug right in to the heroku hosted version
         updater.socket = new WebSocket(url);
         updater.socket.onmessage = (message) => {
             console.log("message received!" + message.data);
