@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+<link rel="stylesheet" href="{{ static_url('css/tictactoe.css') }}" type="text/css">
+<title>Noughts and Crosses</title>
+{% end %}
+
+{% block body %}
+<header>
+    <a href="/home" class="home-link"><h2>Game app</h2></a>
+    <h4 id="username">{{ name }}</h4>
+    <a href="/logout" class="logout">
+        <button >Logout</button>
+    </a>
+</header>
+
+<main>
+    <h4>Noughts and crosses!</h4>
+    <div id="gameBoard">
+
+
+
+    </div>
+</main>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ static_url("scripts/tictactoe.js") }}" type="text/javascript"></script>
+{% end %}

@@ -150,3 +150,9 @@ class Chat_Socket_Handler(websocket.WebSocketHandler):
 
         Chat_Socket_Handler.update_cache(message)
         Chat_Socket_Handler.send_updates(message)
+
+class Noughts_And_Crosses_Handler(BaseHandler):
+    def get(self):
+        name = tornado.escape.xhtml_escape(self.current_user)
+
+        self.render("tictactoe.html", name = name) # Cache is defined in the chatsocket handler
