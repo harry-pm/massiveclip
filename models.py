@@ -14,6 +14,13 @@ class Snake_Highscore(db.Model):
     highscore = Column(Integer)
 
 
+class Firefly_Highscore(db.Model):
+    __tablename__ = "firefly_highscores"
+    id = Column(Integer, primary_key = True, autoincrement = True)
+    username = Column(String(100), nullable = False)
+    highscore = Column(Integer)
+
+
 class User_Auth(db.Model):
     __tablename__ = "user_auth"
     id = Column(Integer, primary_key = True, autoincrement = True)
