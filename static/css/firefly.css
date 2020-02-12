@@ -1,3 +1,18 @@
+#canvas-and-highscores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#firefly {
+    margin-right: 40px;
+    margin-top: -150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
 .game-container {
     margin-top: 200px;
 }
@@ -10,6 +25,25 @@ canvas {
 
 .game-container {
     margin-top: -100px;
+}
+
+#highscores-container {
+    margin-top: -250px;
+    padding: 4px;
+    border: solid black 1px;
+}
+
+table, th, td {
+    padding: 4px;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+h5, #score {
+    font-family: 'Bungee Shade', cursive;
+    font-size: 25px;
+    color: #ffdd77;
+    text-align: center;
 }
 
 /* add @media so that it takes up a certain percentage of the screen within a certain width */
