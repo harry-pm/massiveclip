@@ -5,6 +5,7 @@
 }
 
 #snake {
+    margin-top: -150px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -14,10 +15,17 @@
 canvas {
     border:1px solid #d3d3d3;
     background-color: #f1f1f1;
-    margin-top: -100px; 
+    margin-top: 0; 
 }
 
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+h5, #score {
+    font-family: 'Bungee Shade', cursive;
+    font-size: 25px;
+    color: #ffdd77;
+    text-align: center;
 }

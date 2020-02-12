@@ -7,25 +7,27 @@
 
 {% block body %}
 <header>
-    <h4>Game</h4>
+    <h1>Massive<span>clip</span></h1>
 </header>
 <main>
-    <div id="login-box">
-        <h2>Login</h2>
-        <h3 class="error">{{ login_message }}</h3>
-        <form action="/login" method="POST">
-            <input type="text" name="username">
-            <input type="text" name="password">
-            <input type="submit" name="login">
-        </form>
+    <div id="login-container">
+        <div id="login-box">
+            <h3>Login</h3>
+            <h3 class="error">{{ login_message }}</h3>
+            <form action="/login" method="POST">
+                <input type="text" name="username">
+                <input type="text" name="password">
+                <input type="submit" name="login">
+            </form>
 
-        <h2>Register</h2>
-        <h3 class="error">{{ register_message }}</h3>
-        <form action="/register" method="POST">
-            <input type="text" name="username">
-            <input type="text" name="password">
-            <input type="submit" name="login">
-        </form>
+            <h3>Register</h3>
+            <h3 class="error">{{ register_message }}</h3>
+            <form action="/register" method="POST">
+                <input type="text" name="username">
+                <input type="text" name="password">
+                <input type="submit" name="login">
+            </form>
+        </div>
     </div>
 </main>
 {% end %}

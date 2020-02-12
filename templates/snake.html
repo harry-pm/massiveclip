@@ -2,14 +2,15 @@
 
 {% block title %}
 <link rel="stylesheet" href="{{ static_url('css/snake.css') }}" type="text/css">
-<title>W3sch</title>
+<title>Snake</title>
 {% end %}
 
 {% block body %}
 
 <header>
-    <a href="/home" class="home-link"><h2>Game app</h2></a>
-    <h4 id="username">{{ name }}</h4>
+    <a href="/home" class="home-link">    <h1>Massive<span>clip</span></h1>
+    </a>
+    <h2 id="name">{{ name }}</h2>
     <a href="/logout" class="logout">
         <button >Logout</button>
     </a>
@@ -18,10 +19,10 @@
 <main>
     <div id="canvas-and-highscores">
         <div id="snake">
+            <h4>Snake</h4>
             <canvas width="400" height="400" id="game"></canvas>
             <script src="../static/scripts/snake.js"></script>
-            <h4 id="user_highscore">Your highscore: <span id="score">{{ user_highscore }}</span></h4>
-            <h4>Snake</h4>
+            <h5 id="user_highscore">Your highscore: <span id="score">{{ user_highscore }}</span></h5>
             <a href="https://stevenklambert.com/">By https://stevenklambert.com/</a>
         </div>
         <table>
