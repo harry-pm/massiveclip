@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+<link rel="stylesheet" href="{{ static_url('css/firefly.css') }}" type="text/css">
+<title>Firefly</title>
+{% end %}
+
+{% block body %}
+<header>
+    <a href="/home" class="home-link"><h1>Massive<span>clip</span></h1>
+    </a>
+    <h2 id="name">{{ name }}</h2>
+    <a href="/logout" class="logout">
+        <button >Logout</button>
+    </a>
+</header>
+
+<main>
+    <div id="canvas-and-highscores">
+        <div id="firefly">
+            <h4>Firefly</h4>
+            <canvas id="myCanvas" width="480" height="320"></canvas>
+            <script type="text/javascript" src="../static/scripts/firefly.js"></script>
+            <h5 id="user_highscore">Your highscore: <span id="score">0</span></h5>
+        </div>
+        <table>
+
+        </table>
+    </div>
+</main>
+{% end %}

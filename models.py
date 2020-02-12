@@ -3,8 +3,8 @@ from sqlalchemy import Column, BigInteger, String, Integer # for use in defining
 import os
 
 # db_url = os.environ['DATABASE_URL']
-# db_url = 'postgres://harry:@localhost/games'
-db_url = 'postgres://postgres:@localhost/games'
+db_url = 'postgres://harry:@localhost/games'
+# db_url = 'postgres://postgres:@localhost/games'
 db = SQLAlchemy(url=db_url)
 
 class Snake_Highscore(db.Model):

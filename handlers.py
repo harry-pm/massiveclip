@@ -64,10 +64,10 @@ class Main_Handler(BaseHandler):
         self.render('homepage.html', name = name)
 
 
-class Game_Handler(BaseHandler):
+class Firefly_Handler(BaseHandler):
     def get(self):
         name = tornado.escape.xhtml_escape(self.current_user)
-        self.render('game.html', script_location = '../static/scripts/game.js', name = name)
+        self.render('firefly.html', script_location = '../static/scripts/game.js', name = name)
 
 
 class Snake_Handler(SessionMixin, BaseHandler):
