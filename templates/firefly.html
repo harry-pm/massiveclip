@@ -21,10 +21,15 @@
             <h4>Firefly</h4>
             <canvas id="myCanvas" width="480" height="320"></canvas>
             <script type="text/javascript" src="../static/scripts/firefly.js"></script>
-            <h5 id="user_highscore">Your highscore: <span id="score">0</span></h5>
+            <h5 id="user_highscore">Your highscore: <span id="score">{{ user_highscore }}</span></h5>
         </div>
         <table>
-
+            {% for i in range(len(top_5)) %}
+            <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ top_5[i][1] }}</td>
+            <td>{{ top_5[i][0] }}</td>
+            {% end %}
         </table>
     </div>
 </main>

@@ -14,8 +14,9 @@ class App(web.Application):
             (r"/register", Registration_Handler),
             (r"/logout", Logout_Handler),
             (r"/firefly", Firefly_Handler),
-            (r"/api/save_snake_score", Save_Snake_Score_Request_Handler),
+            (r"/api/save_firefly_score", Save_Firefly_Score_Request_Handler),
             (r"/snake", Snake_Handler),
+            (r"/api/save_snake_score", Save_Snake_Score_Request_Handler),
             (r"/chat", Chat_Handler),
             (r"/chatsocket", Chat_Socket_Handler),
 
