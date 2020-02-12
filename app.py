@@ -19,6 +19,7 @@ class App(web.Application):
             (r"/chat", Chat_Handler),
             (r"/chatsocket", Chat_Socket_Handler),
             (r"/noughts_and_crosses", Noughts_And_Crosses_Handler),
+            (r"/noughts_and_crosses_socket", Noughts_And_Crosses_Socket_Handler),
         ]
         settings = dict(
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
