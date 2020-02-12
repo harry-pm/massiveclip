@@ -63,15 +63,29 @@ main {
 }
 
 #scroll {
-    position: fixed;
+    /* position: fixed;
     width: 60%;
     margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     overflow-y: scroll;
+}
+
+#chat-container {
+    border: solid black 2px;
+    position: absolute;
+    right: 10px;
+}
+
+h6 {
+    font-family: 'Bungee Shade', cursive;
+    margin: 30px 0px 30px 0px;
+    font-size: 30px;
+    color: #553311;
+    text-align: center;
 }
 
 
