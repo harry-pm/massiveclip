@@ -7,7 +7,7 @@ from passlib.hash import pbkdf2_sha256 as sha256 #encodes passwords
 from sqlalchemy import func
 
 # from models import db, User_And_Score, User_Auth 
-from models import db, User_Auth, Snake_Highscore
+from models import db, User_Auth, Snake_Highscore, Firefly_Highscore
 
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
@@ -63,10 +63,33 @@ class Main_Handler(BaseHandler):
         self.render('homepage.html', name = name)
 
 
-class Game_Handler(BaseHandler):
+class Firefly_Handler(SessionMixin, BaseHandler):
     def get(self):
         name = tornado.escape.xhtml_escape(self.current_user)
-        self.render('game.html', script_location = '../static/scripts/game.js', name = name)
+        with self.make_session() as session:
+
+            user_highscore_query = session.query(Firefly_Highscore).filter_by(username = name).order_by(Firefly_Highscore.highscore.desc()).first()
+            if user_highscore_query:
+                user_highscore = user_highscore_query.highscore
+            else:
+                user_highscore = "No highscore yet!"
+
+            all_scores = session.query(Firefly_Highscore).order_by(Firefly_Highscore.highscore.desc()).all()
+            if len(all_scores) < 5:
+                top_5_scores = all_scores
+            else:
+                top_5_scores = all_scores[:5]
+            top_5 = [(score.highscore, score.username) for score in top_5_scores]
+
+        self.render('firefly.html', script_location = '../static/scripts/game.js', name = name, user_highscore = user_highscore, top_5 = top_5)
+
+class Save_Firefly_Score_Request_Handler(SessionMixin, web.RequestHandler):
+    def get(self):
+        with self.make_session() as session:
+            username = self.get_argument("username")
+            firefly_score = int(self.get_argument("firefly_score"))
+            session.add(Firefly_Highscore(username = username, highscore = firefly_score))
+            session.commit()
 
 
 class Snake_Handler(SessionMixin, BaseHandler):

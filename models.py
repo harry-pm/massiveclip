@@ -3,12 +3,19 @@ from sqlalchemy import Column, BigInteger, String, Integer # for use in defining
 import os
 
 # db_url = os.environ['DATABASE_URL']
-# db_url = 'postgres://harry:@localhost/games'
-db_url = 'postgres://postgres:@localhost/games'
+db_url = 'postgres://harry:@localhost/games'
+# db_url = 'postgres://postgres:@localhost/games'
 db = SQLAlchemy(url=db_url)
 
 class Snake_Highscore(db.Model):
     __tablename__ = "snake_highscores"
+    id = Column(Integer, primary_key = True, autoincrement = True)
+    username = Column(String(100), nullable = False)
+    highscore = Column(Integer)
+
+
+class Firefly_Highscore(db.Model):
+    __tablename__ = "firefly_highscores"
     id = Column(Integer, primary_key = True, autoincrement = True)
     username = Column(String(100), nullable = False)
     highscore = Column(Integer)

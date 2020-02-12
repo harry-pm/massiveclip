@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-<link rel="stylesheet" href="{{ static_url('css/snake.css') }}" type="text/css">
-<title>Snake</title>
+<link rel="stylesheet" href="{{ static_url('css/firefly.css') }}" type="text/css">
+<title>Firefly</title>
 {% end %}
 
 {% block body %}
-
 <header>
     <a href="/home" class="home-link"><h1>Massive<span>clip</span></h1>
     </a>
@@ -18,12 +17,11 @@
 
 <main>
     <div id="canvas-and-highscores">
-        <div id="snake">
-            <h4>Snake</h4>
-            <canvas width="400" height="400" id="game"></canvas>
-            <script src="../static/scripts/snake.js"></script>
+        <div id="firefly">
+            <h4>Firefly</h4>
+            <canvas id="myCanvas" width="480" height="320"></canvas>
+            <script type="text/javascript" src="../static/scripts/firefly.js"></script>
             <h5 id="user_highscore">Your highscore: <span id="score">{{ user_highscore }}</span></h5>
-            <a href="https://stevenklambert.com/">By https://stevenklambert.com/</a>
         </div>
         <table>
             {% for i in range(len(top_5)) %}
@@ -32,7 +30,6 @@
             <td>{{ top_5[i][1] }}</td>
             <td>{{ top_5[i][0] }}</td>
             {% end %}
-            </tr>
         </table>
     </div>
 </main>

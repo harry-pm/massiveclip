@@ -15,16 +15,16 @@
             <h3>Login</h3>
             <h3 class="error">{{ login_message }}</h3>
             <form action="/login" method="POST">
-                <input type="text" name="username">
-                <input type="text" name="password">
+                <input type="text" name="username" maxlength="10" placeholder="username">
+                <input type="password" name="password" placeholder="password">
                 <input type="submit" name="login">
             </form>
 
             <h3>Register</h3>
             <h3 class="error">{{ register_message }}</h3>
             <form action="/register" method="POST">
-                <input type="text" name="username">
-                <input type="text" name="password">
+                <input type="text" name="username" maxlength="10" placeholder="username">
+                <input type="password" name="password" placeholder="password">
                 <input type="submit" name="login">
             </form>
         </div>
