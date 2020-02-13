@@ -17,5 +17,12 @@ main {
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -100px;
+    margin-top: -200px;
 }
+
+#winner_announcement {
+    font-size: 40px;
+    font-family: sans-serif;
+    display: none;
+}
+
