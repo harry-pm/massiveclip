@@ -5,7 +5,7 @@ import os
 # FOR MASTER BRANCH
 db_url = os.environ['DATABASE_URL']
 
-# FOR DEVELOPMENT
+# FOR DEVELOPMENT / testing
 # db_url = 'postgres://harry:@localhost/games'
 # db_url = 'postgres://postgres:@localhost/games'
 
