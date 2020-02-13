@@ -120,10 +120,14 @@ function loop() {
 }
 else {
     context.font = "25px Georgia";
-    context.fillText("Game Over    Score: " + score, 100, 100)
-    context.fillText("Press space to play again", 100, 250)
+    context.fillText("Game Over    Score: " + score, 90, 100)
+    context.fillText("Press SPACE to SAVE SCORE", 40, 180)
+    context.fillText("    & PLAY AGAIN", 90, 220)
+  }
 }
-}
+
+
+
 
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function(e) {
@@ -152,7 +156,8 @@ document.addEventListener('keydown', function(e) {
     snake.dy = grid;
     snake.dx = 0;
   }
-
+  
+  //updating highscores and playing again
   else if (gameOver === true && e.which === 32) {
     let xhr = new XMLHttpRequest()
     let username = this.getElementById('name').innerHTML;
