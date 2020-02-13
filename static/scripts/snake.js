@@ -155,17 +155,41 @@ document.addEventListener('keydown', function(e) {
 
   else if (gameOver === true && e.which === 32) {
     let xhr = new XMLHttpRequest()
-    let username = this.getElementById('username').innerHTML;
-    // An imporvement on refreshing the page every time you restart the game might be live updating the scores:
-        // current_highscore = document.getElementById("score").innerHTML;
-        // if (score > current_highscore) {
-        //   document.getElementById("score").innerHTML = score;
-        // }
-    xhr.open("GET", 'http://massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
+    let username = this.getElementById('name').innerHTML;
+    
+    //update the user high score
+    current_highscore = document.getElementById("score").innerHTML;
+    if (score > current_highscore || current_highscore === "No highscore yet!") {
+      document.getElementById("score").innerHTML = score;
+    }
+
+    //update table
+    row_username = document.getElementsByClassName("row_username");
+    row_score = document.getElementsByClassName("row_score");
+    
+    let users_and_scores = [[username, score]];
+    for (let i = 0; i < row_username.length; i++) {
+      users_and_scores.push([row_username[i].innerHTML, parseInt(row_score[i].innerHTML)])
+    };
+
+    users_and_scores.sort((a,b) => b[1] - a[1]);
+    if (users_and_scores.length > 5) {
+      users_and_scores = users_and_scores.slice(0,5);
+    };
+
+    let html_array = [];
+    for (let i = 0; i < users_and_scores.length; i ++) {
+      html_array.push(`<tr><td>${i + 1}</td><td class="row_username">${users_and_scores[i][0]}</td><td class="row_score">${users_and_scores[i][1]}</td></tr>`)
+    };
+
+    document.getElementById("highscores_table").innerHTML = html_array.join("");
+
+    // xhr.open("GET", 'http://massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
+    xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
     xhr.send();
     gameOver = false;
     score = 0;
-    window.location.replace("/snake")
+    // window.location.replace("/snake")
   }
 });
 
