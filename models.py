@@ -2,9 +2,13 @@ from tornado_sqlalchemy import SQLAlchemy, SessionMixin
 from sqlalchemy import Column, BigInteger, String, Integer # for use in defining our models
 import os
 
+# FOR MASTER BRANCH
 # db_url = os.environ['DATABASE_URL']
+
+# FOR DEVELOPMENT
 db_url = 'postgres://harry:@localhost/games'
 # db_url = 'postgres://postgres:@localhost/games'
+
 db = SQLAlchemy(url=db_url)
 
 class Snake_Highscore(db.Model):

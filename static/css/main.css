@@ -67,7 +67,7 @@ main {
     padding-bottom: 300px;
 }
 
-#chat-container {
+#chat-main {
     border: solid black 2px;
     position: absolute;
     right: 10px;
@@ -87,7 +87,6 @@ h6 {
     color: #553311;
     text-align: center;
 }
-
 
 h4 {
     font-family: 'Bungee Shade', cursive;

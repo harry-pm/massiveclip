@@ -27,12 +27,12 @@
         </div>
         <div id="highscores-container">
             <h5>Highscores</h5>
-            <table>
+            <table id="highscores_table">
                 {% for i in range(len(top_5)) %}
                 <tr>
-                <td>{{ i + 1 }}</td>
-                <td>{{ top_5[i][1] }}</td>
-                <td>{{ top_5[i][0] }}</td>
+                    <td>{{ i + 1 }}</td>
+                    <td class="row_username">{{ top_5[i][1] }}</td>
+                    <td class="row_score">{{ top_5[i][0] }}</td>
                 {% end %}
                 </tr>
             </table>
