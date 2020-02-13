@@ -6,7 +6,7 @@ const updater = {
     },
 
     start: () => {
-        const url = "wss://" + location.host + "/chatsocket"; // This should plug right in to the heroku hosted version
+        const url = "ws://" + location.host + "/chatsocket"; // This should plug right in to the heroku hosted version
         updater.socket = new WebSocket(url);
         updater.socket.onmessage = (message) => {
             console.log("message received!" + message.data);
@@ -21,7 +21,7 @@ function sendMessage(message) {
 
 $(document).ready(() => {
     $("#send-message").on("click", function() {
-        username = document.getElementById("username").innerHTML;
+        username = document.getElementById("name").innerHTML;
         message = $("input:text").val();
         dateSent = new Date();
         dateSentString = dateSent.toString().substring(0, 24);

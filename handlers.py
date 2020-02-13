@@ -60,7 +60,7 @@ class Main_Handler(BaseHandler):
             self.redirect("/login")
             return 
         name = tornado.escape.xhtml_escape(self.current_user)
-        self.render('homepage.html', name = name)
+        self.render('homepage.html', messages = Chat_Socket_Handler.cache, name = name)
 
 
 class Firefly_Handler(SessionMixin, BaseHandler):
