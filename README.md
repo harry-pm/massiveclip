@@ -44,13 +44,13 @@ To create a platform for online gaming with the following functionality:
 
 ## The website 
 
-![Screenshot of homepage](./static/images/homepage.png) <br>
+![Screenshot of homepage](./static/images/homepage.PNG) <br>
 The homepage <br>
-![Screenshot of Snake page](./static/images/snake.png) <br>
+![Screenshot of Snake page](./static/images/snake.PNG) <br>
 Snake <br>
-![Screenshot of Firefly page](./static/images/firefly.png) <br>
+![Screenshot of Firefly page](./static/images/firefly.PNG) <br>
 Snake <br>
-![Screenshot of Noughts and Crosses page](./static/images/noughts_and_crosses.png) <br>
+![Screenshot of Noughts and Crosses page](./static/images/noughts_and_crosses.PNG) <br>
 Snake <br>
 
 
