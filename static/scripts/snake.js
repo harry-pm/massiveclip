@@ -190,10 +190,10 @@ document.addEventListener('keydown', function(e) {
     document.getElementById("highscores_table").innerHTML = html_array.join("");
 
     //FOR MASTER BRANCH
-    xhr.open("GET", 'http://massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
+    // xhr.open("GET", 'http://massiveclip.herokuapp.com/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
 
     //FOR DEVELOPMENT
-    // xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
+    xhr.open("GET", 'http://localhost:8000/api/save_snake_score?'+"username=" + username + "&" + "snake_score=" + score , true);
 
     xhr.send();
     gameOver = false;
