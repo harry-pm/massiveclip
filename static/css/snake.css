@@ -5,6 +5,7 @@
 }
 
 #snake {
+    margin-right: 40px;
     margin-top: -150px;
     display: flex;
     justify-content: center;
@@ -18,8 +19,16 @@ canvas {
     margin-top: 0; 
 }
 
+#highscores-container {
+    margin-top: -250px;
+    padding: 4px;
+    border: solid black 1px;
+}
+
 table, th, td {
-    border: 1px solid black;
+    margin: 0 auto;
+    padding: 4px;
+    border-top: 1px solid black;
     border-collapse: collapse;
 }
 

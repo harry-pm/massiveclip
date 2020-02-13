@@ -63,17 +63,30 @@ main {
 }
 
 #scroll {
-    position: fixed;
-    width: 60%;
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
     overflow-y: scroll;
+    padding-bottom: 300px;
 }
 
+#chat-main {
+    border: solid black 2px;
+    position: absolute;
+    right: 10px;
+    width: 25%;
+}
+
+.game-containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h6 {
+    font-family: 'Bungee Shade', cursive;
+    margin: 30px 0px 30px 0px;
+    font-size: 30px;
+    color: #553311;
+    text-align: center;
+}
 
 h4 {
     font-family: 'Bungee Shade', cursive;
