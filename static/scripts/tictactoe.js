@@ -57,7 +57,7 @@ const updater = {
         createBoard();
     },
     start: () => {
-        const url = "ws://" + location.host + "/noughts_and_crosses_socket"; // builds a url for creating the websocket below
+        const url = "wss://" + location.host + "/noughts_and_crosses_socket"; // builds a url for creating the websocket below
         updater.socket = new WebSocket(url);
         updater.socket.onmessage = (event) => {
             infoAsJSON = JSON.parse(event.data);

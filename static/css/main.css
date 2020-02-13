@@ -65,13 +65,14 @@ main {
 #scroll {
     overflow-y: scroll;
     padding-bottom: 300px;
+    margin-right: 340px;
 }
 
 #chat-main {
     border: solid black 2px;
     position: absolute;
     right: 10px;
-    width: 25%;
+    width: 35%;
 }
 
 .game-containers {

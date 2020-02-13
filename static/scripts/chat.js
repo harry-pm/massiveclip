@@ -7,10 +7,10 @@ const updater = {
 
     start: () => {
         //FOR MASTER BRANCH
-        // const url = "wss://" + location.host + "/chatsocket";
+        const url = "wss://" + location.host + "/chatsocket";
 
         //FOR DEVELOPMENT
-        const url = "ws://" + location.host + "/chatsocket";
+        // const url = "ws://" + location.host + "/chatsocket";
 
         updater.socket = new WebSocket(url);
         updater.socket.onmessage = (message) => {
