@@ -25,15 +25,18 @@
             <h5 id="user_highscore">Your highscore: <span id="score">{{ user_highscore }}</span></h5>
             <a href="https://stevenklambert.com/">By https://stevenklambert.com/</a>
         </div>
-        <table>
-            {% for i in range(len(top_5)) %}
-            <tr>
-            <td>{{ i + 1 }}</td>
-            <td>{{ top_5[i][1] }}</td>
-            <td>{{ top_5[i][0] }}</td>
-            {% end %}
-            </tr>
-        </table>
+        <div id="highscores-container">
+            <h5>Highscores</h5>
+            <table>
+                {% for i in range(len(top_5)) %}
+                <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ top_5[i][1] }}</td>
+                <td>{{ top_5[i][0] }}</td>
+                {% end %}
+                </tr>
+            </table>
+        </div>
     </div>
 </main>
 {% end %}
