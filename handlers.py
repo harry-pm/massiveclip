@@ -172,3 +172,42 @@ class Chat_Socket_Handler(websocket.WebSocketHandler):
 
         Chat_Socket_Handler.update_cache(message)
         Chat_Socket_Handler.send_updates(message)
+
+class Noughts_And_Crosses_Handler(BaseHandler):
+    def get(self):
+        name = tornado.escape.xhtml_escape(self.current_user)
+
+        self.render("tictactoe.html", name = name) # Cache is defined in the chatsocket handler
+
+class Noughts_And_Crosses_Socket_Handler(websocket.WebSocketHandler):
+    waiters = set()
+
+    def open(self):
+        Noughts_And_Crosses_Socket_Handler.waiters.add(self)
+        if len(Noughts_And_Crosses_Socket_Handler.waiters) == 1:
+            self.player_status = "Player1"
+        elif len(Noughts_And_Crosses_Socket_Handler.waiters) == 2:
+            self.player_status = "Player2"
+        else:
+            self.player_status = "Spectator"
+    
+    def on_close(self): # when a window is closed, gets rid of it from the set of waiters in line 40
+        Noughts_And_Crosses_Socket_Handler.waiters.remove(self)
+    
+    @classmethod
+    def send_updates(cls, update_info): 
+        # update info will contain a cell index, and info on which player just made a move (for working out who moves next etc)
+        logging.info("sending message to %d waiters", len(cls.waiters)) # Just fancy logging, useful but not integral
+        for waiter in cls.waiters:
+            try:
+                waiter.write_message(update_info)# sends the message to each 'client' of this websocket.
+            except:
+                logging.error("Error sending message", exc_info = True)
+
+    def on_message(self, message_info):
+        # Handles INCOMING messages on the websocket. Each time a message is received, it is fired off to each waiter in the waiter set.
+        logging.info("got message %r", message_info) # Logs messages content
+        message = {"message_info": message_info, "player": self.player_status} 
+        # message = [message_info, self.player_status] # array 2 items long: 1 = the cell number to update, 2 = who made the move
+        # GameSocketHandler.update_cache(parsed) # should be just a number
+        Noughts_And_Crosses_Socket_Handler.send_updates(message)
