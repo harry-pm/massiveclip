@@ -11,11 +11,11 @@ const createBoard = () => {
     document.getElementById('gameBoard').innerHTML = (HTMLToInject)
 }
 
+let playerToMove = "Player1"
+
 const updater = {
     socket: null,
     displayMove: (id, nought_or_cross)=> {
-        console.log("pls show text");
-        console.log(id);
         document.getElementById(id).innerHTML = nought_or_cross; // Inserts either an O or X, properly formatted to fill the box
     },
     start: () => {
@@ -25,16 +25,17 @@ const updater = {
             infoAsJSON = JSON.parse(event.data);
             console.log(infoAsJSON.player)
 
-            if (infoAsJSON.player === "Player1"){
-                symbol = "X"
+            if (infoAsJSON.player === "Player1" && playerToMove === "Player1"){
+                symbol = "X";
+                playerToMove = "Player2";
+                updater.displayMove(infoAsJSON.message_info, symbol)
             }
-            else if (infoAsJSON.player === "Player2"){
-                symbol = "O"
+            else if (infoAsJSON.player === "Player2" && playerToMove === "Player2"){
+                symbol = "O";
+                playerToMove = "Player1";
+                updater.displayMove(infoAsJSON.message_info, symbol)
             }
-            else{
-                symbol = ""
-            }
-            updater.displayMove(infoAsJSON.message_info, symbol)
+            // updater.displayMove(infoAsJSON.message_info, symbol)
         }
     }
 }
@@ -47,6 +48,7 @@ $(document).ready(() => {
     createBoard()
     $(".gameSquare").on("click", () => {
         updateMove(event.target.id);
+        console.log("Player to move: " + playerToMove);
     })
 
     updater.start()

@@ -178,7 +178,7 @@ class Noughts_And_Crosses_Socket_Handler(websocket.WebSocketHandler):
         logging.info("sending message to %d waiters", len(cls.waiters)) # Just fancy logging, useful but not integral
         for waiter in cls.waiters:
             try:
-                waiter.write_message(update_info)# sends the message (in this case just a total number) to each 'client' of this websocket.
+                waiter.write_message(update_info)# sends the message to each 'client' of this websocket.
             except:
                 logging.error("Error sending message", exc_info = True)
 

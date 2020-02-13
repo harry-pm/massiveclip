@@ -8,7 +8,9 @@
     height: 100px;
     width: 100px;
     border: 2px solid black;
-    font-size: 80px;
+    font-size: 90px;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 main {
