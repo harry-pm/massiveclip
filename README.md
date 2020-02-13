@@ -38,7 +38,14 @@ To create a platform for online gaming with the following functionality:
 
 # Technologies Used: 
 - Tornado
+- Javascript
+- Python
+- PyTest
+- HTML
+- CSS
+- Jquery
 - PostgreSQL
+- Git
 - Heroku
 
 
