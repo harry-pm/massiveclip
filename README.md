@@ -1,6 +1,9 @@
 README
 ======
 
+# MASSIVEclip
+available at https://massiveclip.herokuapp.com/
+
 # OBJECTIVE
 To create a platform for online gaming with the following functionality:
 
@@ -33,7 +36,11 @@ To create a platform for online gaming with the following functionality:
         Therefore I want my username to be displayed in the headers of each webpage.
 
 # Setup instructions:
-- PENDING
+- Clone the dev branch (pushes to master will be deployed)
+- Static/scripts/chat.js, static/scripts/snake.js, and models.py each have a line of code that is specific for the master branch or for development branch. These are highlighted in the comments. Ensure the correct options provided are uncommented.
+- Create a postgres database named 'games'.
+- Run the migrate.py file for the database migration.
+- Run app.py and visit localhost:8000
 
 
 # Technologies Used: 
