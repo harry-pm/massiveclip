@@ -5,15 +5,22 @@ var myScore;
 
 myGamePiece = new component(8, 6, "orange", 10, 160, "firefly");
 myGamePiece.gravity = 0.05;
-myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+myScore = new component("30px", "Consolas", "black", 280, 40, "score");
+gameOver = new component("30px", "Consolas", "black", 170, 140, "gameOver");
+playAgain = new component("30px", "Consolas", "black", 50, 180, "playAgain");
+
 
 
 //flying control
 window.addEventListener('keydown', function (e) {
-    accelerate(-0.2) == '38';
+    if (e.keyCode == '38') {
+        accelerate(-0.2);
+    };
 })
 window.addEventListener('keyup', function (e) {
-    accelerate(0.05) == '38';
+    if (e.keyCode == '38') {
+        accelerate(0.05);
+    };
 })
 
 
@@ -27,6 +34,9 @@ var myGameArea = {
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    stop : function () {
+        clearInterval(this.interval);
     }
 }
 
@@ -46,7 +56,7 @@ function component(width, height, color, x, y, type) {
         ctx = myGameArea.context;
 
         //draw score
-        if (this.type == "text") {
+        if (this.type == "score") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
             ctx.fillText(this.text, this.x, this.y);
@@ -57,6 +67,18 @@ function component(width, height, color, x, y, type) {
             ctx.fillStyle = color;
             ctx.ellipse(this.x, this.y, this.width, this.height, 0, 0, 2 * Math.PI);
             ctx.fill();
+
+        //draw gamover
+        } else if (this.type == "gameOver") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText("Gameover", this.x, this.y);
+        
+        //draw playagain
+        } else if (this.type == "playAgain") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText("Press any key to play again", this.x, this.y);
 
         //draw rectangles
         } else {
@@ -99,7 +121,9 @@ function updateGameArea() {
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
             //add functionality here to send score to db
-            console.log("you died")
+            myGameArea.stop();
+            gameOver.update();
+            playAgain.update();
             return;
         } 
     }
@@ -127,6 +151,17 @@ function updateGameArea() {
 }
 
 myGameArea.start();
+
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode == '32') {
+        myGameArea.stop();
+        myObstacles = [];
+        myGameArea.clear();
+        myGameArea.start();
+        this.console.log('go again')
+        // myGameArea.start();
+    };
+});
 
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
