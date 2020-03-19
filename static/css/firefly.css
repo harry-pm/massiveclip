@@ -47,5 +47,9 @@ h5, #score {
     text-align: center;
 }
 
+#user_highscore {
+    margin-top: 0;
+}
+
 /* add @media so that it takes up a certain percentage of the screen within a certain width */
 
