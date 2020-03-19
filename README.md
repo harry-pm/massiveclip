@@ -37,7 +37,7 @@ To create a platform for online gaming with the following functionality:
 
 # Setup instructions:
 - Clone the dev branch (pushes to master will be deployed)
-- Static/scripts/chat.js, static/scripts/snake.js, and models.py each have a line of code that is specific for the master branch or for development branch. These are highlighted in the comments. Ensure the correct options provided are uncommented.
+- Static/scripts/chat.js, static/scripts/snake.js, static/scripts/firefly.js and models.py each have a line of code that is specific for the master branch or for development branch. These are highlighted in the comments. Ensure the correct options provided are uncommented.
 - Create a postgres database named 'games'.
 - Run the migrate.py file for the database migration.
 - Run app.py and visit localhost:8000
@@ -66,3 +66,8 @@ Snake game <br>
 Firefly game <br>
 ![Screenshot of Noughts and Crosses page](./static/images/noughts_and_crosses.PNG) <br>
 Noughts and Crosses (2 player) <br>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> dev
