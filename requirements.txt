@@ -23,7 +23,7 @@ passlib==1.7.2
 pep8==1.7.1
 pipenv==2018.11.26
 pluggy==0.13.1
-py==1.8.1
+py==1.10.0
 PyJWT==1.7.1
 pyparsing==2.4.6
 pytest==5.3.5
