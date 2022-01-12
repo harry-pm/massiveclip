@@ -21,7 +21,7 @@ packaging==20.1
 panda3d==1.10.5
 passlib==1.7.2
 pep8==1.7.1
-pipenv==2018.11.26
+pipenv==2022.1.8
 pluggy==0.13.1
 py==1.8.1
 PyJWT==1.7.1
